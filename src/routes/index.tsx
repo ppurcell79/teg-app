@@ -89,13 +89,13 @@ function Wizard() {
                 <li>View live results on TEG® Manager, then ieMR</li>
               </ul>
             </div>
-            <Btn onClick={() => go({ kind: "patient" })}>I have TEG results →</Btn>
+            <Btn onClick={() => go({ kind: "patient" })}>Enter TEG results →</Btn>
           </div>
         )}
 
         {screen.kind === "patient" && (
           <div className="flex flex-1 flex-col justify-center gap-4">
-            <h2 className="mb-4 text-3xl font-extrabold">Is the patient an adult or paediatric?</h2>
+            <h2 className="mb-4 text-lg font-extrabold">Is the patient an adult or paediatric?</h2>
             <Btn onClick={() => { setPatient("adult"); go({ kind: "q", i: 0 }); }}>Adult</Btn>
             <Btn tone="ghost" onClick={() => { setPatient("paed"); go({ kind: "q", i: 0 }); }}>Paediatric</Btn>
           </div>
@@ -109,8 +109,9 @@ function Wizard() {
                 <p className="text-xs font-bold uppercase tracking-widest opacity-90">Step {s.n} of 4</p>
                 <p className="font-display text-lg font-semibold">Check for {s.title}</p>
               </div>
-              <h2 className="mt-6 text-4xl font-extrabold leading-tight">{s.question}</h2>
+              <h2 className="mt-6 text-lg font-extrabold">{s.question}</h2>
               {s.hint && <p className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{s.hint}</p>}
+              {s.note?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
               <div className="mt-auto grid gap-3 pt-8">
                 <Btn tone="yes" onClick={() => { setFindings((f) => [...f, screen.i]); go({ kind: "action", i: screen.i }); }}>Yes</Btn>
                 <Btn tone="no" onClick={() => next(screen.i)}>No{screen.i < 3 ? ` — go to Step ${s.n + 1}` : ""}</Btn>
@@ -132,7 +133,6 @@ function Wizard() {
                 </ul>
               </div>
               <p className="text-muted-foreground">{REPEAT}</p>
-              {s.note?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
               <div className="mt-auto grid gap-3 pt-6">
                 <Btn onClick={() => next(screen.i)}>{screen.i < 3 ? `Continue to Step ${s.n + 1} →` : "See summary →"}</Btn>
               </div>
