@@ -102,7 +102,7 @@ function Wizard() {
         )}
 
         {screen.kind === "q" && (() => {
-          const s = STEPS[screen.i];
+          const s = STEPS[screen.i]!;
           return (
             <div className="flex flex-1 flex-col gap-4">
               <div className={`rounded-2xl p-4 text-on-step ${bg[s.color]}`}>
@@ -120,7 +120,7 @@ function Wizard() {
         })()}
 
         {screen.kind === "action" && (() => {
-          const s = STEPS[screen.i];
+          const s = STEPS[screen.i]!;
           return (
             <div className="flex flex-1 flex-col gap-4">
               <p className={`text-sm font-bold uppercase tracking-widest ${tx[s.color]}`}>Step {s.n} · result</p>
@@ -151,7 +151,7 @@ function Wizard() {
               <>
                 <h2 className="text-3xl font-extrabold">Summary</h2>
                 {findings.map((i) => {
-                  const s = STEPS[i];
+                  const s = STEPS[i]!;
                   return (
                     <div key={i} className="rounded-2xl bg-card p-4 shadow-sm">
                       <p className={`text-xs font-bold uppercase tracking-widest ${tx[s.color]}`}>Step {s.n}</p>
