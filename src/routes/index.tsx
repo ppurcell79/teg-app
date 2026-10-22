@@ -95,7 +95,7 @@ function Wizard() {
 
         {screen.kind === "patient" && (
           <div className="flex flex-1 flex-col justify-center gap-4">
-            <h2 className="mb-4 text-xl font-extrabold">Is the patient an adult or paediatric?</h2>
+            <h2 className="mb-4 text-lg font-extrabold">Is the patient an adult or paediatric?</h2>
             <Btn onClick={() => { setPatient("adult"); go({ kind: "q", i: 0 }); }}>Adult</Btn>
             <Btn tone="ghost" onClick={() => { setPatient("paed"); go({ kind: "q", i: 0 }); }}>Paediatric</Btn>
           </div>
@@ -109,7 +109,7 @@ function Wizard() {
                 <p className="text-xs font-bold uppercase tracking-widest opacity-90">Step {s.n} of 4</p>
                 <p className="font-display text-lg font-semibold">Check for {s.title}</p>
               </div>
-              <h2 className="mt-6 text-xl font-extrabold">{s.question}</h2>
+              <h2 className="mt-6 text-lg font-extrabold">{s.question}</h2>
               {s.hint && <p className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{s.hint}</p>}
               {s.note?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
               <div className="mt-auto grid gap-3 pt-8">
