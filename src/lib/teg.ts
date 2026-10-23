@@ -37,7 +37,7 @@ export const STEPS: Step[] = [
     finding: "Platelet deficit or disorder",
     action: {
       adult: ["1 unit Platelets (1 dose = 1 pooled bag; consider 1–2 doses)"],
-      paed: ["Platelets 10 mL/kg (TEG Manager guidance: 10–15 mL/kg, max 1 bag)"],
+      paed: ["Platelets 10 mL/kg"],
     },
     paediatricDoses: [{ rate: 10, unit: "mL" }],
   },
