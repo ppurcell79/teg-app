@@ -20,7 +20,6 @@ export const Route = createFileRoute("/")({
 
 type Screen =
   | { kind: "start" }
-  | { kind: "patient" }
   | { kind: "weight" }
   | { kind: "q"; i: number }
   | { kind: "action"; i: number }
@@ -97,15 +96,11 @@ function Wizard() {
                 <li>View live results on TEG® Manager, then ieMR</li>
               </ul>
             </div>
-            <Btn onClick={() => go({ kind: "patient" })}>Enter TEG results →</Btn>
-          </div>
-        )}
-
-        {screen.kind === "patient" && (
-          <div className="flex flex-1 flex-col justify-center gap-4">
-            <h2 className="mb-4 text-lg font-extrabold">Is the patient an adult or paediatric?</h2>
-            <Btn onClick={() => { setPatient("adult"); go({ kind: "q", i: 0 }); }}>Adult</Btn>
-            <Btn tone="ghost" onClick={() => { setPatient("paed"); go({ kind: "weight" }); }}>Paediatric</Btn>
+            <h2 className="text-lg font-extrabold">Is the patient an adult or paediatric?</h2>
+            <div className="grid gap-3">
+              <Btn onClick={() => { setPatient("adult"); go({ kind: "q", i: 0 }); }}>Adult</Btn>
+              <Btn tone="ghost" onClick={() => { setPatient("paed"); go({ kind: "weight" }); }}>Paediatric</Btn>
+            </div>
           </div>
         )}
 
