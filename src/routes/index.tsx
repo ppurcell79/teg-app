@@ -152,6 +152,7 @@ function Wizard() {
                   {getActions(s, patient, weight).map((a) => <li key={a}>{a}</li>)}
                 </ul>
               </div>
+              {s.actionNote?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
               {patient === "paed" && (s.n === 2 || s.n === 3) && <p className="text-sm text-muted-foreground">Weight-based total shown; confirm bag volume with Blood Bank and do not exceed {s.n === 2 ? "1 bag" : "2 bags"}.</p>}
               <p className="text-muted-foreground">{REPEAT}</p>
               <div className="mt-auto grid gap-3 pt-6">
