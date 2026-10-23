@@ -122,7 +122,7 @@ function Wizard() {
                 <p className="text-xs font-bold uppercase tracking-widest opacity-90">Step {s.n} of 4</p>
                 <p className="font-display text-lg font-semibold">Check for {s.title}</p>
               </div>
-              <h2 className="mt-6 text-lg font-extrabold">{s.question}</h2>
+              <h2 className="mt-6 text-center text-lg font-extrabold">{s.question}</h2>
               {s.hint && <p className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{s.hint}</p>}
               {s.note?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
               <div className="mt-auto grid gap-3 pt-8">
