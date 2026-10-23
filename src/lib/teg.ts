@@ -46,16 +46,13 @@ export const STEPS: Step[] = [
     title: "Coagulation factor deficiency / disorder",
     color: "step3",
     question: "Is CKH R > 10 mins?",
-    hint: "First ensure no evidence of heparin effect (CKH R < CK R).",
+    hint: "First ensure there is no heparin effect (CKH R < CK R). If CK R is prolonged but CKH R is normal (< 9.1 min), consider protamine reversal — refer to the QH Anticoagulant Guideline for Hospitalised Adult Patients for dosing.",
     finding: "Coagulation factor deficit or disorder",
     action: {
       adult: ["2 units Plasma (FFP/ELP)", "OR 10–15 units/kg Prothrombin Complex Concentrate"],
       paed: ["Plasma 15 mL/kg (max 2 bags)", "PCC is for adults only"],
     },
     paediatricDoses: [{ rate: 15, unit: "mL" }],
-    note: [
-      "Heparin effect: if CK R is prolonged but CKH R is normal (< 9.1 min), consider protamine reversal — refer to the QH Anticoagulant Guideline for Hospitalised Adult Patients for dosing.",
-    ],
   },
   {
     n: 4,
