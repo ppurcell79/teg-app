@@ -86,7 +86,6 @@ function Wizard() {
             <div>
               <p className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Sunshine Coast University Hospital</p>
               <h1 className="mt-2 text-4xl font-extrabold leading-tight">TEG guide for the bleeding patient</h1>
-              <p className="mt-3 text-muted-foreground">Work through 4 checks, one question at a time, using your TEG6 Global Stasis results.</p>
             </div>
             <div className="rounded-2xl bg-card p-4 text-sm shadow-sm">
               <p className="font-bold">Before you start</p>
