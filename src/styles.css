@@ -34,6 +34,7 @@
   --color-step3: var(--step3);
   --color-step4: var(--step4);
   --color-ok: var(--ok);
+  --color-no: var(--no);
   --color-on-step: var(--on-step);
 }
 
