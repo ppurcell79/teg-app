@@ -22,9 +22,9 @@ describe("Paediatric weight-based doses", () => {
   it("calculates fibrinogen at 40 mg/kg without assuming a concentration", () => {
     expect(actions(0, 20)[1]).toContain("800 mg total");
   });
-  it("calculates platelets at 10 mL/kg and retains the bag limit", () => {
+  it("calculates platelets at 10 mL/kg without the TEG Manager guidance sentence", () => {
     expect(actions(1, 20)[0]).toContain("200 mL total");
-    expect(actions(1, 20)[0]).toContain("max 1 bag");
+    expect(actions(1, 20)[0]).not.toContain("TEG Manager");
   });
   it("calculates plasma at 15 mL/kg and retains the bag limit", () => {
     expect(actions(2, 20)[0]).toContain("300 mL total");
