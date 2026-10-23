@@ -38,4 +38,11 @@ describe("Paediatric weight-based doses", () => {
   it("leaves adult doses unchanged", () => {
     for (const step of STEPS) expect(getActions(step, "adult", 20)).toEqual(step.action.adult);
   });
+  it("shows the fibrinogen concentrate availability note on the action page, not the question page", () => {
+    const step = STEPS[0];
+    if (!step) throw new Error("Missing step 1");
+    const availability = "Fibrinogen concentrate is available from";
+    expect(step.actionNote?.some((n) => n.includes(availability))).toBe(true);
+    expect((step.note ?? []).some((n) => n.includes(availability))).toBe(false);
+  });
 });

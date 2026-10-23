@@ -9,6 +9,7 @@ export type Step = {
   finding: string;
   action: Record<Patient, string[]>;
   note?: string[];
+  actionNote?: string[];
   paediatricDoses?: { rate: number; unit: "mL" | "mg"; max?: number }[];
 };
 
@@ -26,7 +27,7 @@ export const STEPS: Step[] = [
       paed: ["Cryoprecipitate 5 mL/kg", "OR Fibrinogen concentrate (RiaSTAP®) 40 mg/kg"],
     },
     paediatricDoses: [{ rate: 5, unit: "mL" }, { rate: 40, unit: "mg" }],
-    note: ["Fibrinogen concentrate is available from: Blood Bank, SCUH resus PYXIS fridge, SCUH OR1+2 PYXIS fridge."],
+    actionNote: ["Fibrinogen concentrate is available from: Blood Bank, SCUH resus PYXIS fridge, SCUH OR1+2 PYXIS fridge."],
   },
   {
     n: 2,
