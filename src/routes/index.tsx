@@ -32,7 +32,7 @@ function Btn({ children, onClick, tone = "primary", disabled = false }: { childr
   const styles = {
     primary: "bg-primary text-primary-foreground",
     yes: "bg-destructive text-destructive-foreground",
-    no: "bg-ok text-on-step",
+    no: "bg-no text-on-step",
     ghost: "bg-secondary text-secondary-foreground",
   }[tone];
   return (
