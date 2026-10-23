@@ -43,6 +43,6 @@ describe("Paediatric weight-based doses", () => {
     if (!step) throw new Error("Missing step 1");
     const availability = "Fibrinogen concentrate is available from";
     expect(step.actionNote?.some((n) => n.includes(availability))).toBe(true);
-    expect(step.note?.some((n) => n.includes(availability))).toBe(false);
+    expect((step.note ?? []).some((n) => n.includes(availability))).toBe(false);
   });
 });
