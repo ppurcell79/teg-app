@@ -95,7 +95,7 @@ function Wizard() {
                 <li>View live results on TEG® Manager, then ieMR</li>
               </ul>
             </div>
-            <h2 className="text-lg font-extrabold">Is the patient an adult or paediatric?</h2>
+            <h2 className="text-lg font-extrabold">Is this an adult or paediatric patient?</h2>
             <div className="grid gap-3">
               <Btn onClick={() => { setPatient("adult"); go({ kind: "q", i: 0 }); }}>Adult</Btn>
               <Btn tone="ghost" onClick={() => { setPatient("paed"); go({ kind: "weight" }); }}>Paediatric</Btn>
