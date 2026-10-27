@@ -50,7 +50,7 @@ export const STEPS: Step[] = [
     hint: "First ensure there is no heparin effect (CKH R < CK R). If CK R is prolonged but CKH R is normal (< 9.1 min), consider protamine reversal — refer to the QH Anticoagulant Guideline for Hospitalised Adult Patients for dosing.",
     finding: "Coagulation factor deficit or disorder",
     action: {
-      adult: ["2 units Plasma (FFP/ELP)", "OR 10–15 units/kg Prothrombin Complex Concentrate"],
+      adult: ["2 units Plasma (FFP)", "OR 10–15 units/kg Prothrombin Complex Concentrate"],
       paed: ["Plasma 15 mL/kg (max 2 bags)", "PCC is for adults only"],
     },
     paediatricDoses: [{ rate: 15, unit: "mL" }],
