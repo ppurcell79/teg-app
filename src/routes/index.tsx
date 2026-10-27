@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { STEPS, REPEAT, getActions, isValidWeight, type Patient } from "@/lib/teg";
+import { STEPS, REPEAT, getActions, isValidWeight, isMaskedByFibrinogen, PLATELET_MASKED, type Patient } from "@/lib/teg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -136,19 +136,24 @@ function Wizard() {
         {screen.kind === "action" && (() => {
           const s = STEPS[screen.i];
           if (!s) return null;
+          const masked = isMaskedByFibrinogen(s, findings);
           return (
             <div className="flex flex-1 flex-col gap-4">
               <p className={`text-sm font-bold uppercase tracking-widest ${tx[s.color]}`}>Step {s.n} · result</p>
-              <h2 className="text-3xl font-extrabold">{s.finding}</h2>
+              <h2 className="text-3xl font-extrabold">{masked ? "Platelets cannot be assessed yet" : s.finding}</h2>
               <div className="rounded-2xl border-2 border-destructive bg-card p-4">
                 <p className="text-sm font-extrabold uppercase tracking-wider text-destructive">Action · {patient === "adult" ? "Adult" : `Paediatric · ${weight} kg`}</p>
-                <ul className="mt-2 space-y-1.5 text-lg font-bold">
-                  {getActions(s, patient, weight).map((a) => <li key={a}>{a}</li>)}
-                </ul>
+                {masked ? (
+                  <p className="mt-2 text-lg font-bold">{PLATELET_MASKED}</p>
+                ) : (
+                  <ul className="mt-2 space-y-1.5 text-lg font-bold">
+                    {getActions(s, patient, weight).map((a) => <li key={a}>{a}</li>)}
+                  </ul>
+                )}
               </div>
-              {s.actionNote?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
-              {patient === "paed" && (s.n === 2 || s.n === 3) && <p className="text-sm text-muted-foreground">Weight-based total shown; confirm bag volume with Blood Bank and do not exceed {s.n === 2 ? "1 bag" : "2 bags"}.</p>}
-              <p className="text-muted-foreground">{REPEAT}</p>
+              {!masked && s.actionNote?.map((n) => <p key={n} className="rounded-xl bg-muted p-3 text-sm text-muted-foreground">{n}</p>)}
+              {!masked && patient === "paed" && (s.n === 2 || s.n === 3) && <p className="text-sm text-muted-foreground">Weight-based total shown; confirm bag volume with Blood Bank and do not exceed {s.n === 2 ? "1 bag" : "2 bags"}.</p>}
+              {!masked && <p className="text-muted-foreground">{REPEAT}</p>}
               <div className="mt-auto grid gap-3 pt-6">
                 <Btn onClick={() => next(screen.i)}>{screen.i < 3 ? `Continue to Step ${s.n + 1} →` : "See summary →"}</Btn>
               </div>
@@ -170,12 +175,19 @@ function Wizard() {
                 {findings.map((i) => {
                   const s = STEPS[i];
                   if (!s) return null;
+                  const masked = isMaskedByFibrinogen(s, findings);
                   return (
                     <div key={i} className="rounded-2xl bg-card p-4 shadow-sm">
                       <p className={`text-xs font-bold uppercase tracking-widest ${tx[s.color]}`}>Step {s.n}</p>
-                      <p className="text-lg font-extrabold">{s.finding}</p>
-                      <ul className="mt-1 text-muted-foreground">{getActions(s, patient, weight).map((a) => <li key={a}>{a}</li>)}</ul>
-                      {patient === "paed" && (s.n === 2 || s.n === 3) && <p className="mt-2 text-sm text-muted-foreground">Confirm bag volume with Blood Bank; do not exceed {s.n === 2 ? "1 bag" : "2 bags"}.</p>}
+                      <p className="text-lg font-extrabold">{masked ? "Platelets cannot be assessed yet" : s.finding}</p>
+                      {masked ? (
+                        <p className="mt-1 text-muted-foreground">{PLATELET_MASKED}</p>
+                      ) : (
+                        <>
+                          <ul className="mt-1 text-muted-foreground">{getActions(s, patient, weight).map((a) => <li key={a}>{a}</li>)}</ul>
+                          {patient === "paed" && (s.n === 2 || s.n === 3) && <p className="mt-2 text-sm text-muted-foreground">Confirm bag volume with Blood Bank; do not exceed {s.n === 2 ? "1 bag" : "2 bags"}.</p>}
+                        </>
+                      )}
                     </div>
                   );
                 })}
