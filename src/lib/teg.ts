@@ -33,7 +33,8 @@ export const STEPS: Step[] = [
     n: 2,
     title: "Platelet deficiency / disorder",
     color: "step2",
-    question: "Is CFF MA normal and CRT MA < 50 mm?",
+    question: "Is CRT MA < 50 mm?",
+    hint: "Only applies when CFF MA is normal.",
     finding: "Platelet deficit or disorder",
     action: {
       adult: ["1 unit Platelets (1 dose = 1 pooled bag; consider 1–2 doses)"],
@@ -82,4 +83,11 @@ export function getActions(step: Step, patient: Patient, weight?: number): strin
     const total = dose.max === undefined ? calculated : Math.min(calculated, dose.max);
     return `${action} — ${format(total)} ${dose.unit} total${dose.max !== undefined && calculated > dose.max ? " (maximum applied)" : ""}`;
   });
+}
+
+export const PLATELET_MASKED =
+  "CFF MA is below 15 mm (fibrinogen deficit), so platelet function cannot be separated out here. Treat fibrinogen first and repeat TEG.";
+
+export function isMaskedByFibrinogen(step: Step, findings: number[]) {
+  return step.n === 2 && findings.includes(0);
 }

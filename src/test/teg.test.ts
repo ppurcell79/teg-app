@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { STEPS, getActions, isValidWeight } from "@/lib/teg";
+import { STEPS, getActions, isValidWeight, isMaskedByFibrinogen, PLATELET_MASKED } from "@/lib/teg";
 
 function actions(index: number, weight: number) {
   const step = STEPS[index];
@@ -44,5 +44,17 @@ describe("Paediatric weight-based doses", () => {
     const availability = "Fibrinogen concentrate is available from";
     expect(step.actionNote?.some((n) => n.includes(availability))).toBe(true);
     expect((step.note ?? []).some((n) => n.includes(availability))).toBe(false);
+  });
+  it("shows the fibrinogen-first message at step 2 when a fibrinogen deficit was already found", () => {
+    const platelets = STEPS[1];
+    const fibrinolysis = STEPS[3];
+    if (!platelets || !fibrinolysis) throw new Error("Missing step 2 or 4");
+    expect(isMaskedByFibrinogen(platelets, [0])).toBe(true);
+    expect(isMaskedByFibrinogen(platelets, [])).toBe(false);
+    expect(isMaskedByFibrinogen(fibrinolysis, [0])).toBe(false);
+    expect(PLATELET_MASKED).toBe(
+      "CFF MA is below 15 mm (fibrinogen deficit), so platelet function cannot be separated out here. Treat fibrinogen first and repeat TEG.",
+    );
+    expect(platelets.question.toLowerCase()).not.toContain("cff ma normal");
   });
 });
