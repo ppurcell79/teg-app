@@ -51,7 +51,7 @@ export const STEPS: Step[] = [
     finding: "Coagulation factor deficit or disorder",
     action: {
       adult: ["2 units Plasma (FFP)", "OR 10–15 units/kg Prothrombin Complex Concentrate"],
-      paed: ["Plasma 15 mL/kg (max 2 bags)", "PCC is for adults only"],
+      paed: ["FFP 15 mL/kg (max 2 bags)", "PCC is for adults only"],
     },
     paediatricDoses: [{ rate: 15, unit: "mL" }],
   },
