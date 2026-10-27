@@ -7,9 +7,9 @@ import { Input } from "@/components/ui/input";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TEG Algorithm Wizard — Bleeding Patients" },
+      { title: "TEG Algorithm" },
       { name: "description", content: "Answer one TEG question at a time to get treatment guidance for bleeding patients." },
-      { property: "og:title", content: "TEG Algorithm Wizard — Bleeding Patients" },
+      { property: "og:title", content: "TEG Algorithm" },
       { property: "og:description", content: "Answer one TEG question at a time to get treatment guidance." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -83,9 +83,9 @@ function Wizard() {
       <main key={JSON.stringify(screen)} className="animate-rise flex flex-1 flex-col">
         {screen.kind === "start" && (
           <div className="flex flex-1 flex-col justify-center gap-6">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Sunshine Coast University Hospital</p>
-              <h1 className="mt-2 text-4xl font-extrabold leading-tight">TEG guide for the bleeding patient</h1>
+            <div className="text-center">
+              <h1 className="text-4xl font-extrabold leading-tight">TEG Algorithm</h1>
+              <p className="mt-3 text-base font-bold text-muted-foreground">Based on SCUH Massive Haemorrhage Protocol</p>
             </div>
             <div className="rounded-2xl bg-card p-4 text-sm shadow-sm">
               <p className="font-bold">Before you start</p>
@@ -105,7 +105,7 @@ function Wizard() {
 
         {screen.kind === "weight" && (
           <div className="flex flex-1 flex-col justify-center gap-4">
-            <h2 className="text-lg font-extrabold">Paediatric patient weight</h2>
+            <h2 className="text-center text-lg font-extrabold">Paediatric patient weight</h2>
             <label htmlFor="patient-weight" className="font-bold">Weight (kg)</label>
             <Input id="patient-weight" type="number" inputMode="decimal" min="0" step="any" value={weightInput} onChange={(event) => setWeightInput(event.target.value)} className="h-14 text-lg" aria-invalid={weightInput !== "" && !validWeight} aria-describedby="weight-validation" />
             {weightInput !== "" && !validWeight && <p id="weight-validation" className="text-sm text-destructive">Enter a weight greater than 0 kg.</p>}
@@ -140,7 +140,7 @@ function Wizard() {
           return (
             <div className="flex flex-1 flex-col gap-4">
               <p className={`text-sm font-bold uppercase tracking-widest ${tx[s.color]}`}>Step {s.n} · result</p>
-              <h2 className="text-3xl font-extrabold">{masked ? "Platelets cannot be assessed yet" : s.finding}</h2>
+              <h2 className="text-center text-3xl font-extrabold">{masked ? "Platelets cannot be assessed yet" : s.finding}</h2>
               <div className="rounded-2xl border-2 border-destructive bg-card p-4">
                 <p className="text-sm font-extrabold uppercase tracking-wider text-destructive">Action · {patient === "adult" ? "Adult" : `Paediatric · ${weight} kg`}</p>
                 {masked ? (
@@ -165,12 +165,12 @@ function Wizard() {
           <div className="flex flex-1 flex-col gap-4">
             {findings.length === 0 ? (
               <>
-                <h2 className="mt-6 text-4xl font-extrabold">Normal TEG</h2>
+                <h2 className="mt-6 text-center text-4xl font-extrabold">Normal TEG</h2>
                 <p className="text-lg text-muted-foreground">No immediate intervention required.</p>
               </>
             ) : (
               <>
-                <h2 className="text-3xl font-extrabold">Summary</h2>
+                <h2 className="text-center text-3xl font-extrabold">Summary</h2>
                 {patient === "paed" && <p className="font-bold">Paediatric · {weight} kg</p>}
                 {findings.map((i) => {
                   const s = STEPS[i];

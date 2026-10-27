@@ -78,9 +78,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "TEG Bleeding Algorithm Wizard" },
+      { title: "TEG Algorithm" },
       { name: "description", content: "Step-by-step TEG algorithm guide for bleeding patients." },
-      { property: "og:title", content: "TEG Bleeding Algorithm Wizard" },
+      { property: "og:title", content: "TEG Algorithm" },
       { property: "og:description", content: "Step-by-step TEG algorithm guide for bleeding patients." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
